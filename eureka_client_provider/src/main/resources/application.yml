@@ -1,0 +1,13 @@
+server:
+  port: 8662
+
+eureka:
+  instance:
+    prefer-ip-address: true #表示将自己的IP注册到eureka_server默认为false，不配置代表注册微服务所在操作系统的hostname到eureka_server
+  client:
+    serviceUrl:
+      #defaultZone: http://localhost:8661/eureka/
+      defaultZone: http://localhost:8663/eureka/,http://localhost:8664/eureka/
+spring:
+  application:
+    name: service_provider1 #在Eureka Server进行注册时，当前服务的名称

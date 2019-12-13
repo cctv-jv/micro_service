@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: eureka_server_cluster
+---
+spring:
+  profiles:
+    active: peer1 #置顶profile为peer1
+server:
+  port: 8663
+eureka:
+  instance:
+    hostname: peer1 #profile为peer1时主机名设置为peer1
+  client:
+    #registerWithEureka: false #表示是否将自己注册到eureka_server默认为true。因为我们这个是server所以设置为false
+    #fetchRegistry: false #表示是否从eureka_server中获取注册信息。默认为true，我们这个是单点的eureka_server不需要同步其他server节点，所以设为false
+    serviceUrl:
+      #将自己注册到peer2的eureka上
+      defaultZone: http://peer2:8664/eureka/ #设置与eureka_server交互的地址，查询服务和注册服务都依赖这个地址，多个地址可由逗号分隔
+---
+spring:
+  profiles:
+    active: peer2 #置顶profile为peer1
+server:
+  port: 8664
+eureka:
+  instance:
+    hostname: peer2 #profile为peer2时主机名设置为peer2
+  client:
+    #registerWithEureka: false #表示是否将自己注册到eureka_server默认为true。因为我们这个是server所以设置为false
+    #fetchRegistry: false #表示是否从eureka_server中获取注册信息。默认为true，我们这个是单点的eureka_server不需要同步其他server节点，所以设为false
+    serviceUrl:
+      #将自己注册到peer1的eureka上
+      defaultZone: http://peer1:8663/eureka/ #设置与eureka_server交互的地址，查询服务和注册服务都依赖这个地址，多个地址可由逗号分隔
