@@ -1,5 +1,5 @@
 server:
-  port: 8662
+  port: 8665
 
 eureka:
   instance:
@@ -10,4 +10,4 @@ eureka:
       #defaultZone: http://localhost:8663/eureka/,http://localhost:8664/eureka/
 spring:
   application:
-    name: service-provider #在Eureka Server进行注册时，当前服务的名称
+    name: service-consumer1 #在Eureka Server进行注册时，当前服务的名称
